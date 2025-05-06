@@ -56,6 +56,11 @@ class Post(models.Model):
         verbose_name = 'публикация'
         verbose_name_plural = 'Публикации'
         ordering = ['-pub_date', 'id']
+        indexes = [
+            models.Index(
+                fields=['pub_date', 'id'],
+            )
+        ]
 
     def __str__(self):
         return (f'Публикация: {self.text[:TEXT_DISPLAY_LENGTH]},'
@@ -87,9 +92,9 @@ class Comment(models.Model):
         ordering = ['-created', 'id']
 
     def __str__(self):
-        return (f'Комментарий: {self.text[:TEXT_DISPLAY_LENGTH]}, '
-                f'автора: {self.author}, '
-                f'к публикации: {self.post}')
+        return (f'Комментарий: {self.text[:TEXT_DISPLAY_LENGTH]}. '
+                f'Автора: {self.author}. '
+                f'К публикации: {self.post.text[:TEXT_DISPLAY_LENGTH]}')
 
 
 class Follow(models.Model):
@@ -112,11 +117,16 @@ class Follow(models.Model):
         constraints = [
             models.UniqueConstraint(
                 fields=['user', 'following'],
-                name='unique_user_following'
+                name='unique_user_following',
             ),
         ]
         ordering = ['user', 'following']
+        indexes = [
+            models.Index(
+                fields=['user', 'following'],
+            )
+        ]
 
     def __str__(self):
-        return (f'Пользователь: {self.user}, подписан на'
+        return (f'Пользователь: {self.user}, подписан на '
                 f'пользователя: {self.following}.')

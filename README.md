@@ -1,69 +1,67 @@
- API Final Yatube
+ API для Yatube
 
-This project is a REST API for the Yatube social network. It allows users 
-to create posts, comment on posts, follow other users, and manage groups 
-(communities).
+Этот проект реализует REST API для социальной сети Yatube. Он позволяет 
+внешним приложениям создавать публикации, создавать комментарии к публикациям,
+подписываться на других пользователей и получать информацию о сообществах.
 
-## Features
-- User authentication using JWT
-- CRUD operations for posts, comments, follow and groups
-- Follow/unfollow functionality
-- Pagination and permissions
+## Описание
+- Аутентификация пользователей с использованием JWT
+- Операции CRUD для публикаций, комментариев, подписок и сообществ
+- Функционал подписки на пользователей
+- Пагинация и права доступа
 
-## Installation
-1. Clone the repository:  
+## Установка
+1. Клонируйте репозиторий:  
 git clone https://github.com/Konstantin-Kleinikov/api_final_yatube
 
 
-2. Navigate to the project directory:  
+2. Перейдите в директорию проекта:  
 cd api_final_yatube
 
 
-3. Create and activate a virtual environment:  
+3. Создайте и активируйте виртуальное окружение:  
 python -m venv venv  
-source venv/bin/activate # On Windows: venv\Scripts\activate
+source venv/bin/activate # Для Windows: venv\Scripts\activate
 
 
-4. Install dependencies:  
+4. Установите зависимости:  
 python3 -m pip install --upgrade pip  
 pip install -r requirements.txt  
 
 
-5. Populate initial data into database:  
-Go to _postman_collection_ folder and run command `bash set_up_data.sh` 
-in Bash Terminal.
+5. Заполните базу данных начальными данными:  
+Перейдите в папку _postman_collection_ и выполните команду `bash set_up_data.sh` 
+в терминале Bash.
 
 
-6. Make migrations:  
+6. Примените миграции:  
 python manage.py migrate  
 
 
-7. Import predefined API requests into Postman:  
-Go to Postman and import collection from file 
+7. Импортируйте предопределённые API-запросы в Postman:  
+Откройте Postman и импортируйте коллекцию из файла 
 _postman_collection_\ _API_for_yatube.postman_collection.json_.
 
-## Usage
-Run the development server:  
+## Использование
+Запустите сервер разработки:  
 python manage.py runserver  
 
-Review the API documentation at http://127.0.0.1:8000/redoc/.
+Ознакомьтесь с документацией API по адресу http://127.0.0.1:8000/redoc/.
 
-Access the API at `http://127.0.0.1:8000/api/v1/`.
-
-### API-request examples
-1. Create a Post with Group  
-The POST request for authorized user to url http://127.0.0.1:8000/api/v1/posts/  
-with body  
+### Примеры API-запросов
+1. Создание новой публикации 
+POST-запрос для авторизованного пользователя по адресу http://127.0.0.1:8000/api/v1/posts/  
+с телом запроса  
 ```json
 {
     "text": "Post with group (Example)",
-} 
+}
 ```
-should create a new post in database and respond with status **201 Created**. 
+должен создать новую публикацию в базе данных и вернуть ответ со статусом **201 Created**. 
 
 
 ## Testing
-Run tests using:  
+Запустите тесты, используя:  
 pytest
 
 
