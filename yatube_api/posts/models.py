@@ -120,7 +120,7 @@ class Follow(models.Model):
                 name='unique_user_following',
             ),
         ]
-        ordering = ['user', 'following']
+        ordering = ['user__username', 'following__username', 'id']
         indexes = [
             models.Index(
                 fields=['user', 'following'],
