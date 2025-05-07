@@ -40,7 +40,15 @@ python manage.py migrate
 
 7. Импортируйте предопределённые API-запросы в Postman:  
 Откройте Postman и импортируйте коллекцию из файла 
-_postman_collection_\ _API_for_yatube.postman_collection.json_.
+_postman_collection_\ _API_for_yatube.postman_collection.json_.  
+
+
+8. Используйте Django Debug Toolbar с Django Rest Framework (DRF) для
+оптимизации SQL-запросов:  
+Выполните запрос в Postman.  
+В браузере перейдите на страницу http://127.0.0.1:8000/__debug__/ и на панели
+Django Debug Toolbar выберите History, сделайте Refresh, для выбранной записи
+нажмите на кнопку Switch и на панели перейдите в пункт SQL для анализа запроса.
 
 ## Использование
 Запустите сервер разработки:  

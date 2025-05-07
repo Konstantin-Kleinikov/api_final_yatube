@@ -33,7 +33,7 @@ class CommentViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         post = self.get_post_object()
-        return post.comments.all()
+        return post.comments.select_related('author').all()
 
     def perform_create(self, serializer):
         post = self.get_post_object()
@@ -66,7 +66,10 @@ class FollowViewSet(CreateListViewSet):
     )
 
     def get_queryset(self):
-        return Follow.objects.filter(user=self.request.user)
+        return (Follow.objects
+                .filter(user=self.request.user)
+                .select_related('user', 'following')
+                )
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
