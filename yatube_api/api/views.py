@@ -7,7 +7,7 @@ from rest_framework.permissions import (IsAuthenticated,
 from api.permissions import IsAuthorOrReadOnly
 from api.serializers import (CommentSerializer, FollowSerializer,
                              GroupSerializer, PostSerializer)
-from posts.models import Follow, Group, Post
+from posts.models import Group, Post
 
 
 class CreateListViewSet(mixins.CreateModelMixin, mixins.ListModelMixin,
