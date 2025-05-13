@@ -1,7 +1,8 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.utils.text import Truncator
 
-from posts.constants import TEXT_DISPLAY_LENGTH, TITLE_DISPLAY_LENGTH
+from posts.constants import TEXT_DISPLAY_LENGTH, WORDS_DISPLAY_LENGTH
 
 User = get_user_model()
 
@@ -23,7 +24,7 @@ class Group(models.Model):
         ordering = ['title', 'id']
 
     def __str__(self):
-        return self.title[:TITLE_DISPLAY_LENGTH]
+        return Truncator(self.title).words(WORDS_DISPLAY_LENGTH)
 
 
 class Post(models.Model):
